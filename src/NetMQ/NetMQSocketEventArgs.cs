@@ -13,10 +13,10 @@ namespace NetMQ
 			Socket = socket;
 		}
 
-		internal  void Init(PollEvents events)
+		internal void Init(PollEvents events)
 		{
-			this.ReceiveReady = events.HasFlag(PollEvents.PollIn);
-			this.SendReady = events.HasFlag(PollEvents.PollOut);
+			this.ReceiveReady = EnumFlagsHelper.HasFlag(events, PollEvents.PollIn);
+			this.SendReady = EnumFlagsHelper.HasFlag(events, PollEvents.PollOut);
 		}
 
 		public NetMQSocket Socket { get; private set; }

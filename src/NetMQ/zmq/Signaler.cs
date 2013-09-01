@@ -109,7 +109,7 @@ namespace NetMQ.zmq
 			sync.ReleaseMutex();
 
 			// Release the kernel object
-			sync.Dispose();
+			sync.Close();
 		}
 
 		public Socket FD

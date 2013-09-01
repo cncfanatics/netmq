@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NetMQ</RootNamespace>
     <AssemblyName>NetMQ</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,11 +35,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IReceivingSocket.cs" />
-    <Compile Include="NetMQScheduler.cs" />
     <Compile Include="OutgoingSocketExtensions.cs" />
     <Compile Include="ErrorPollingException.cs" />
     <Compile Include="NetMQFrame.cs" />
@@ -50,25 +49,6 @@
     <Compile Include="NetMQSocketEventArgs.cs" />
     <Compile Include="Poller.cs" />
     <Compile Include="ReceivingSocketExtensions.cs" />
-    <Compile Include="Security\NetMQSecurityException.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Security\CipherSuite.cs" />
-    <Compile Include="Security\V0_1\ContentType.cs" />
-    <Compile Include="Security\V0_1\HandshakeLayer.cs" />
-    <Compile Include="Security\V0_1\HandshakeMessages\ClientHelloMessage.cs" />
-    <Compile Include="Security\V0_1\HandshakeMessages\FinishedMessage.cs" />
-    <Compile Include="Security\V0_1\HandshakeMessages\HandshakeMessage.cs" />
-    <Compile Include="Security\V0_1\HandshakeMessages\CertificateMessage.cs" />
-    <Compile Include="Security\V0_1\HandshakeMessages\ServerHelloDoneMessage.cs" />
-    <Compile Include="Security\V0_1\HandshakeMessages\ServerHelloMessage.cs" />
-    <Compile Include="Security\V0_1\HandshakeMessages\ClientKeyExchangeMessage.cs" />
-    <Compile Include="Security\ISecureChannel.cs" />
-    <Compile Include="Security\V0_1\OutgoingMessageBag.cs" />
-    <Compile Include="Security\V0_1\RecordLayer.cs" />
-    <Compile Include="Security\V0_1\SecureChannel.cs" />
-    <Compile Include="Security\V0_1\SecurityParameters.cs" />
-    <Compile Include="Security\V0_1\SHA256PRF.cs" />
     <Compile Include="Sockets\DealerSocket.cs" />
     <Compile Include="Devices\DeviceBase.cs" />
     <Compile Include="Devices\DeviceMode.cs" />

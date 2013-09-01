@@ -120,4 +120,25 @@ namespace NetMQ.zmq
 		PollOut = 0x2,
 		PollError = 0x4
 	}
+
+	public class EnumFlagsHelper
+	{
+
+		//public static bool HasFlag(this Enum flags, Enum flag)
+		//{
+		//		return (flags & flag) != 0;
+		//}
+
+		public static bool HasFlag(PollEvents flags, PollEvents flag)
+		{
+			return (flags & flag) != 0;
+		}
+		
+		// TODO: strange, why cant this be generic?
+
+		public static bool HasFlag(SendReceiveOptions flags, SendReceiveOptions flag)
+		{
+			return (flags & flag) != 0;
+		}
+	}
 }

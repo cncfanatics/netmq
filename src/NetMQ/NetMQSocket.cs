@@ -159,7 +159,7 @@ namespace NetMQ
 
 			ZMQ.Poll(items, (int)timeout.TotalMilliseconds);
 
-			if (item.ResultEvent.HasFlag(PollEvents.PollError) && !IgnoreErrors)
+			if (EnumFlagsHelper.HasFlag(item.ResultEvent, PollEvents.PollError) && !IgnoreErrors)
 			{
 				Errors++;
 
@@ -201,7 +201,7 @@ namespace NetMQ
 			{
 				m_socketEventArgs.Init(events);
 
-				if (events.HasFlag(PollEvents.PollIn))
+				if (EnumFlagsHelper.HasFlag(events, PollEvents.PollIn))
 				{
 					var temp = m_receiveReady;
 					if (temp != null)
@@ -210,7 +210,7 @@ namespace NetMQ
 					}
 				}
 
-				if (events.HasFlag(PollEvents.PollOut))
+				if (EnumFlagsHelper.HasFlag(events, PollEvents.PollOut))
 				{
 					var temp = m_sendReady;
 					if (temp != null)

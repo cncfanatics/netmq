@@ -10,7 +10,7 @@ namespace NetMQ
 	{
 		public static byte[] Receive(this IReceivingSocket socket, SendReceiveOptions options, out bool hasMore)
 		{
-			return socket.Receive(options.HasFlag(SendReceiveOptions.DontWait), out hasMore);
+			return socket.Receive(EnumFlagsHelper.HasFlag(options, SendReceiveOptions.DontWait), out hasMore);
 		}
 
 		public static byte[] Receive(this IReceivingSocket socket, out bool hasMore)
@@ -38,7 +38,7 @@ namespace NetMQ
 
 		public static string ReceiveString(this IReceivingSocket socket, SendReceiveOptions options, out bool hasMore)
 		{
-			return socket.ReceiveString(options.HasFlag(SendReceiveOptions.DontWait), out hasMore);
+			return socket.ReceiveString(EnumFlagsHelper.HasFlag(options, SendReceiveOptions.DontWait), out hasMore);
 		}
 
 		public static string ReceiveString(this IReceivingSocket socket, SendReceiveOptions options)
@@ -71,10 +71,10 @@ namespace NetMQ
 			var items = new[] { item };
 			ZMQ.Poll(items, (int)timeout.TotalMilliseconds);
 
-			if (item.ResultEvent.HasFlag(PollEvents.PollError) && !socket.IgnoreErrors)
+			if (EnumFlagsHelper.HasFlag(item.ResultEvent, PollEvents.PollError) && !socket.IgnoreErrors)
 				throw new ErrorPollingException("Error while polling", socket);
 
-			if (!item.ResultEvent.HasFlag(PollEvents.PollIn))
+			if (!EnumFlagsHelper.HasFlag(item.ResultEvent, PollEvents.PollIn))
 				return null;
 
 			var msg = socket.ReceiveMessage();
